@@ -2,6 +2,10 @@
 
 This highly performant photos app enables visualizing an entire photos library with 10,000s of photos based on a user defined duration, with the ability to see everything in one minute.
 
+
+https://github.com/user-attachments/assets/8473ca1b-f108-4b54-8c2e-b05300205e2f
+
+
 # Track
 
 A beautiful track by the amazing Boris Brejcha that makes even more sense after you experience a life of photos in a minute. 
