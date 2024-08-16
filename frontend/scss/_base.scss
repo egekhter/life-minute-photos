@@ -1,0 +1,54 @@
+$primary-color: #0080ea;
+$color-light_blue: darken(#9EE3FB, 10%);
+
+$secondary-color: lighten($primary-color, 15%);
+
+$yes: $color-light_blue;
+
+$no: lighten(#ea9000, 20%);
+
+$color-yellow: #eacb00;
+
+$color-green: darken(#00ea69, 15%);
+
+$color-darkgray: slategray;
+$color-lightgray: rgba(112, 128, 144, 0.45);
+$color-lightgray2: rgba(112, 128, 144, 0.16);
+
+$color-gray: lighten(mix($secondary-color, #828282, 20%), 5%);
+
+$color-red: mix(#EF233C, $primary-color, 95%);
+
+$border-light: lightgray;
+$border-dark: black;
+
+$border-blue: $primary-color;
+
+.blue {
+  color: $primary-color;
+}
+
+.green {
+  color: $color-green;
+}
+
+.yellow {
+  color: $color-yellow;
+}
+
+.red {
+  color: $color-red;
+}
+
+.yes {
+  color: $yes;
+}
+
+.no {
+  color: $no;
+}
+
+$navigation_background: mix($primary-color, white, 5%);
+$lightblue5: $navigation_background;
+
+$lightblue15: mix($primary-color, white, 15%);

@@ -1,0 +1,10 @@
+* linguist-vendored
+
+*.js linguist-vendored=false
+*.scss linguist-vendored=false
+*.html linguist-vendored=false
+
+dist/** linguist-vendored
+frontend/build/** linguist-vendored
+frontend/js/vendor/** linguist-vendored
+frontend/scss/vendor/** linguist-vendored

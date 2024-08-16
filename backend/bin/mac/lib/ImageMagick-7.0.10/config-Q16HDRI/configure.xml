@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuremap [
+  <!ELEMENT configuremap (configure)+>
+  <!ATTLIST configuremap xmlns CDATA #FIXED ''>
+  <!ELEMENT configure EMPTY>
+  <!ATTLIST configure xmlns CDATA #FIXED '' name NMTOKEN #REQUIRED
+    value CDATA #REQUIRED>
+]>
+<!--
+  ImageMagick build configuration.
+-->
+<configuremap>
+  <configure name="CC" value="gcc"/>
+  <configure name="CFLAGS" value="-I/usr/include/libxml2 -I/usr/local/include    -g -O2 -Wall -mtune=core2 -fexceptions -D_FORTIFY_SOURCE=0 -pthread -DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16"/>
+  <configure name="CODER_PATH" value="/etc/imagemagick/lib/ImageMagick-7.0.10/modules-Q16HDRI/coders"/>
+  <configure name="CONFIGURE_PATH" value="/etc/imagemagick/etc/ImageMagick-7/"/>
+  <configure name="CONFIGURE" value="./configure  '--prefix=/etc/imagemagick' '--enable-shared=no' '--enable-static=yes' '--with-heic' 'LDFLAGS=-L/usr/local/lib' 'CPPFLAGS=-I/usr/local/include/libheif' 'PKG_CONFIG_PATH=/usr/local/lib/pkgconfig'"/>
+  <configure name="COPYRIGHT" value="Copyright (C) 1999-2020 ImageMagick Studio LLC"/>
+  <configure name="CPPFLAGS" value="-I/etc/imagemagick/include/ImageMagick-7"/>
+  <configure name="CXXFLAGS" value="-g -O2 -pthread"/>
+  <configure name="CXX" value="g++"/>
+  <configure name="DEFS" value="-DHAVE_CONFIG_H"/>
+  <configure name="DELEGATES" value="bzlib mpeg heic xml zlib"/>
+  <configure name="DISTCHECK_CONFIG_FLAGS" value="'CPPFLAGS=-I/usr/local/include/libheif' 'LDFLAGS=-L/usr/local/lib'  --disable-deprecated  --with-quantum-depth=16  --with-jemalloc=no  --with-umem=no  --with-autotrace=no  --with-gslib=no  --with-fontpath=  --with-rsvg=no  --with-perl=no "/>
+  <configure name="DOCUMENTATION_PATH" value="/etc/imagemagick/share/doc/ImageMagick-7"/>
+  <configure name="EXEC-PREFIX" value="/etc/imagemagick"/>
+  <configure name="EXECUTABLE_PATH" value="/etc/imagemagick/bin"/>
+  <configure name="FEATURES" value="DPC HDRI Cipher"/>
+  <configure name="FILTER_PATH" value="/etc/imagemagick/lib/ImageMagick-7.0.10/modules-Q16HDRI/filters"/>
+  <configure name="GIT_REVISION" value="17089" />
+  <configure name="HOST" value="x86_64-apple-darwin19.4.0"/>
+  <configure name="INCLUDE_PATH" value="/etc/imagemagick/include/ImageMagick-7"/>
+  <configure name="LDFLAGS" value="-L/etc/imagemagick/lib -L/usr/local/lib"/>
+  <configure name="LIBRARY_PATH" value="/etc/imagemagick/lib/ImageMagick-7.0.10"/>
+  <configure name="LIBS" value="                 -L/usr/local/lib -lheif          -lbz2      -lxml2  -lz     -lm      "/>
+  <configure name="LIB_VERSION_NUMBER" value="7,0,10,2"/>
+  <configure name="LIB_VERSION" value="0x70A"/>
+  <configure name="NAME" value="ImageMagick"/>
+  <configure name="PCFLAGS" value="-DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16"/>
+  <configure name="PREFIX" value="/etc/imagemagick"/>
+  <configure name="QuantumDepth" value="16"/>
+  <configure name="RELEASE_DATE" value="2020-03-26"/>
+  <configure name="SHAREARCH_PATH" value="/etc/imagemagick/lib/ImageMagick-7.0.10/config-Q16HDRI"/>
+  <configure name="SHARE_PATH" value="/etc/imagemagick/share/ImageMagick-7"/>
+  <configure name="TARGET_CPU" value="x86_64"/>
+  <configure name="TARGET_OS" value="darwin19.4.0"/>
+  <configure name="TARGET_VENDOR" value="apple"/>
+  <configure name="VERSION" value="7.0.10"/>
+  <configure name="WEBSITE" value="https://imagemagick.org"/>
+</configuremap>

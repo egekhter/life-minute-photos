@@ -1,0 +1,202 @@
+#navigation-level-3 {
+    &.organize-all {
+        .organize-menu {
+            display: flex;
+        }
+    }
+
+    &.date {
+        .info.date {
+            display: block;
+        }
+
+        #organize-date {
+            display: inline-block;
+        }
+    }
+
+    .organize-menu {
+        position: absolute;
+        width: 100%;
+        display: none;
+        z-index: 25;
+
+        .tab {
+            width: 50%;
+            background-color: lighten($primary-color, 50%);
+            display: flex;
+            text-align: center;
+            padding: 12px 0;
+            box-sizing: border-box;
+            border-top: 1px solid black;
+            cursor: pointer;
+            justify-content: center;
+            border-bottom: 1px solid $color-lightgray;
+
+            i {
+                padding-left: 5px;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .tab.selected {
+            background-color: lighten($primary-color, 35%);
+        }
+
+        svg {
+            height: 19px;
+
+            * {
+                fill: black;
+            }
+        }
+    }
+}
+
+#organize-date {
+    display: none;
+    position: absolute;
+    right: 0;
+    transform: translateY(-61px);
+    width: 213px;
+    height: 40px;
+
+    i {
+        position: absolute;
+        left: 14px;
+        top: 13px;
+        z-index: 2;
+
+        svg {
+            height: 18px;
+        }
+    }
+
+    input {
+        height: 100%;
+        font-size: 20px;
+        border-radius: 5px;
+        border: 1px solid slategray;
+        background-color: lighten($primary-color, 50%);
+        right: 0;
+        position: absolute;
+
+        &.date {
+            padding-left: 40px;
+            width: 170px;
+        }
+    }
+}
+
+#organize-all {
+    display: none;
+
+    &.active {
+        display: block;
+
+        .organize-menu {
+            display: flex;
+        }
+    }
+
+    .metadata__info {
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        font-weight: 500;
+
+        .info {
+            display: none;
+            color: white;
+            font-size: 18px;
+        }
+    }
+
+    .info.date {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+
+        &.original {
+            top: 0;
+            left: 50%;
+            transform: translate3d(-50%, 33%, 0);
+            background: lighten($primary-color, 50%);
+            color: black;
+            border-radius: 10px;
+            width: 90%;
+            font-size: 14px;
+        }
+
+        &.new {
+            left: 50%;
+            margin-top: 50%;
+            transform: translate3d(-50%, -50%, 0);
+            background-color: $color-green;
+        }
+    }
+}
+
+#navigation-level-3 {
+    .select-top {
+        position: absolute;
+        right: 0;
+        width: 80px;
+        border-radius: 8px;
+        color: white;
+        padding: 8px 15px;
+        -moz-transition: all 0.2s ease-in;
+        -o-transition: all 0.2s ease-in;
+        -webkit-transition: all 0.2s ease-in;
+        transition: all 0.2s ease-in;
+        cursor: pointer;
+        background-color: lighten($primary-color, 10%);
+        &:hover,
+        &.active {
+            background-color: $primary-color;
+        }
+    }
+
+    .select-top:after {
+        content: "";
+        width: 0;
+        height: 0;
+        border: 7px solid transparent;
+        border-color: #fff transparent transparent transparent;
+        position: absolute;
+        top: 16px;
+        right: 10px;
+    }
+
+    .select-options {
+        display: none;
+        position: absolute;
+        //top: 100%;
+        //right: 0;
+        //left: 0;
+        z-index: 999;
+        //margin: 0;
+        //padding: 0;
+        list-style: none;
+
+        background-color: $primary-color;
+
+        &.active {
+            display: block;
+        }
+
+        li {
+            margin: 0;
+            padding: 12px 0;
+            text-indent: 15px;
+            border-top: 1px solid darken($primary-color, 10%);
+            -moz-transition: all 0.15s ease-in;
+            -o-transition: all 0.15s ease-in;
+            -webkit-transition: all 0.15s ease-in;
+            transition: all 0.15s ease-in;
+        }
+    }
+}

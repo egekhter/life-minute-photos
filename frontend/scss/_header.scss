@@ -1,0 +1,38 @@
+$mobile_break: 720px;
+
+$desktop_logo_w: 175px;
+$mobile_logo_w: 60px;
+$header_total_h: 60px;
+$windows_bar_h: 30px;
+
+html {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    &.is_windows {
+        #header {
+            margin-top: $windows_bar_h;
+        }
+    }
+}
+
+#header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #fff;
+    margin: 0;
+    z-index: 4;
+}
+
+#app.hide_header {
+    header {
+        display: none !important;
+    }
+}

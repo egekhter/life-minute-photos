@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  content="width=device-width, height=device-height, initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
+    <link rel="icon" href="">
+    <title>Life Minute Photos</title>
+
+    <meta http-equiv="Content-Security-Policy" content="
+                            default-src * data: blob: ws: wss: ms-appdata: gap://ready file://* https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline' http://* https://*;
+                            style-src 'self' 'unsafe-inline' http://*:* https://* file://*;
+                            script-src 'self' http://*:2001 http://*:8080 http://* 'unsafe-inline' 'unsafe-eval' https://* blob:;
+                            connect-src * data: ws: wss: blob: http://* https://*;
+                            media-src * data: blob: http://* file://*;
+                            object-src 'self' blob:;
+                            img-src * data: blob: http://* https://* file://*
+    ">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .loading #app {
+            visibility: hidden;
+            opacity: 0;
+        }
+        .loading .lds-ring, .lds-ring.active {
+            display: inline-block;
+            visibility: visible;
+        }
+
+        .lds-ring {
+            position: fixed;
+            display: none;
+            left: 50%;
+            z-index: 2;
+            transform: translateX(-50%);
+        }
+
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            margin: 0;
+            border: 4px solid #0080ea;
+            border-radius: 50%;
+            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: #0080ea transparent transparent transparent;
+        }
+
+        .lds-ring div:nth-child(1) {
+            animation-delay: -0.45s;
+        }
+        .lds-ring div:nth-child(2) {
+            animation-delay: -0.3s;
+        }
+        .lds-ring div:nth-child(3) {
+            animation-delay: -0.15s;
+        }
+        @keyframes lds-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .logo__image {
+            margin-left: 20px;
+            font-size: 24px;
+            background-image: url(./img/logo.png);
+            height: 40px;
+            width: 124px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        #spinner .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 2;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 16px;
+            color: black;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+        ::-webkit-scrollbar{
+            width: 0;  /* Remove scrollbar space */
+            background: transparent;  /* Optional: just make scrollbar invisible */
+            display: none;
+        }
+
+        .windows-bar {
+            display: none;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: lightgrey;
+            z-index: 10000;
+            padding: 0 0;
+            gap: 0 0;
+            justify-content: end;
+            align-items: center;
+            -webkit-app-region: drag;
+        }
+
+        .windows-bar .icon {
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0px 20px;
+            transition: all 300ms;
+            background-color: transparent;
+            cursor: pointer;
+            -webkit-app-region: no-drag;
+        }
+
+        .windows-bar .icon:hover {
+            background-color: grey;
+        }
+
+
+        .windows-bar .icon:last-of-type {
+        }
+
+        .windows-bar svg {
+            width: 12px;
+        }
+
+        .windows-bar .minimize {
+        }
+
+        .windows-bar .minimize svg {
+        }
+
+        .windows-bar .maximize {
+        }
+
+        .windows-bar .maximize svg {
+        }
+
+        .windows-bar .close {
+        }
+
+        .life-loading-img {
+            display: flex;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        html.is_windows {
+            .windows-bar {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body class="loading">
+
+<div id="windows-bar" class="windows-bar">
+    <div class="minimize icon">
+        <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 32"><path d="M496,32H16C7.2,32,0,24.8,0,16S7.2,0,16,0h480c8.8,0,16,7.2,16,16s-7.2,16-16,16Z"/></svg>    </div>
+    <div class="maximize icon">
+        <svg aria-hidden="true" focusable="false" class="window-maximize" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="" d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm16 400c0 8.8-7.2 16-16 16H48c-8.8 0-16-7.2-16-16V192h448v240zM32 160V80c0-8.8 7.2-16 16-16h416c8.8 0 16 7.2 16 16v80H32z"></path></svg>
+    </div>
+    <div class="close icon">
+        <svg aria-hidden="true" focusable="false" class="window-close" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="" d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"></path></svg>
+    </div>
+</div>
+
+<div id="spinner" class="lds-ring">
+        <span class="message">
+            <span class="life-loading-img" style="background-image: url(./img/life-photos.png)"></span>
+        </span>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<script>
+    let prepend_url = '.';
+    let current_time = Date.now();
+    let loading_wh = 180;
+
+    function definePlatform() {
+        let userAgent = navigator.platform;
+
+        let platforms_def = {
+            'mac': ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+            'windows': ['Windows', 'Win16', 'Win32', 'WinCE'],
+            'ios': ['iPhone', 'iPad', 'iPod'],
+            'android': ['Android'],
+        };
+
+        for(let p in platforms_def) {
+            window['is_' + p] = false;
+
+            for(let i = 0; i < platforms_def[p].length; i++) {
+                let r = new RegExp(platforms_def[p][i], "i");
+
+                if(r.test(userAgent)) {
+                    window['is_' + p] = true;
+                }
+            }
+        }
+
+        let is_desktop = false;
+
+        if(is_mac || is_windows) {
+            is_desktop = true;
+        }
+
+        if(navigator.userAgent.toLowerCase().includes('ios') || navigator.appVersion.toLowerCase().includes('ipad') || (!/android/i.test(navigator.appVersion) && 'PointerEvent' in window && navigator.appVersion.toLowerCase().includes('safari')) && !is_desktop) {
+            if(!/electron/i.test(navigator.userAgent) && !/android/i.test(navigator.userAgent)) {
+                window['is_ios'] = true;
+                window['is_mac'] = false;
+            }
+        } else if(navigator.userAgent.toLowerCase().includes('android') || /android/i.test(navigator.appVersion)) {
+            window['is_android'] = true;
+        }
+
+        let android_re = /android\sos/i;
+
+        window['is_safari'] = /safari/i.test(navigator.userAgent) && !/electron/i.test(navigator.userAgent) && !android_re.test(navigator.userAgent);
+        window['is_chrome'] = /chrome/i.test(navigator.userAgent) && !/electron/i.test(navigator.userAgent) && !android_re.test(navigator.userAgent);
+        window['is_firefox'] = /firefox/i.test(navigator.userAgent) && !/electron/i.test(navigator.userAgent) && !android_re.test(navigator.userAgent);
+        window['is_browser'] = (is_safari || is_chrome || is_firefox) && !android_re.test(navigator.userAgent);
+
+        if(is_windows) {
+            document.documentElement.classList.add('is_windows');
+        }
+    }
+
+    function setWindowEvents() {
+        let windows_bar = document.getElementById('windows-bar');
+
+        windows_bar.querySelector('.minimize').addEventListener('click', function (e) {
+            const remote = require('@electron/remote');
+
+            remote.BrowserWindow.getFocusedWindow().minimize();
+        });
+
+        windows_bar.querySelector('.maximize').addEventListener('click', function (e) {
+            const remote = require('@electron/remote');
+
+            remote.BrowserWindow.getFocusedWindow().maximize();
+        });
+
+        windows_bar.querySelector('.close').addEventListener('click', function (e) {
+            let ipc = require('electron').ipcRenderer;
+
+            ipc.send('quit-app');
+
+        });
+    }
+
+    function joinPaths () {
+        let args = [];
+
+        for (let i = 0; i < arguments.length; i++) {
+            let arg = arguments[i] + '';
+
+            if(!arg) {
+                continue;
+            }
+            args.push(arg);
+        }
+
+        let slash = '/';
+
+        if(typeof require !== 'undefined' && require('os') && require('os').platform() === 'win32') {
+            slash = '\\';
+        }
+
+        return args.map((part, i) => {
+            if (i === 0) {
+                let re = new RegExp(`[\\${slash}]*$`, 'g');
+                return part.trim().replace(re, '')
+            } else {
+                let re = new RegExp(`(^[\\${slash}]*|[\\/]*$)`, 'g');
+                return part.trim().replace(re, '')
+            }
+        }).filter(x=>x.length).join(slash)
+    }
+
+    function loadInitJS() {
+        try {
+            async function loadJS() {
+                prepend_url = '.';
+
+                let js_src;
+
+                js_src = joinPaths(prepend_url, 'build/bundle-app.js');
+
+                let jsEl = document.createElement('script');
+
+                jsEl.type = 'text/javascript';
+                jsEl.src = js_src + '?v' + current_time;
+                document.getElementsByTagName('body')[0].appendChild(jsEl);
+            }
+
+            loadJS();
+        } catch (e) {
+            console.error(e);
+            loadJS();
+        }
+    }
+
+    function setLoading() {
+        let ldsRingEl = document.querySelector('.lds-ring');
+        ldsRingEl.style.width = `${loading_wh}px`;
+        ldsRingEl.style.height = `${loading_wh}px`;
+        ldsRingEl.style.top = `calc(50vh - ${loading_wh/2}px)`;
+
+        let ring_divs = document.querySelectorAll('.lds-ring div');
+
+        for(let i = 0; i < ring_divs.length; i++) {
+            let el = ring_divs[i];
+
+            el.style.width = `${loading_wh}px`;
+            el.style.height = `${loading_wh}px`;
+        }
+
+        let img_w = loading_wh * .6;
+
+        let lifeImg = document.querySelector('.life-loading-img');
+        lifeImg.style.width = `${img_w}px`;
+        lifeImg.style.height = `${img_w}px`;
+    }
+
+    setWindowEvents();
+    setLoading();
+
+    definePlatform();
+
+    loadInitJS();
+</script>
+
+</body>
+</html>

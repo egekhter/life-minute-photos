@@ -1,0 +1,9 @@
+{
+  "webPreferences": {
+    "nodeIntegration": true,
+    "contextIsolation": false,
+    "webSecurity": false,
+    "enableRemoteModule": true
+  },
+  "title": "Life Minute"
+}

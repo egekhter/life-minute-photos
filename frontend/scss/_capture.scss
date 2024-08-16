@@ -1,0 +1,12 @@
+#record-screen {
+    cursor: pointer;
+    z-index: 3;
+    position: absolute;
+    top: 15px;
+    left: 200px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ea9000;
+    display: none;
+}

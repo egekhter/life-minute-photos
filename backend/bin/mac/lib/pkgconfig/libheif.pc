@@ -1,0 +1,15 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+builtin_h265_decoder=yes
+builtin_h265_encoder=no
+
+Name: libheif
+Description: HEIF image codec.
+URL: https://github.com/strukturag/libheif
+Version: 1.6.2
+Requires:
+Libs: -L${exec_prefix}/lib -lheif
+Libs.private: -lpthread  -lstdc++
+Cflags: -I${prefix}/include
