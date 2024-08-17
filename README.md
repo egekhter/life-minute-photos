@@ -1,6 +1,6 @@
 # Life Minute Photos
 
-This incredible desktop photos app enables visualizing 10,000s of photos in one minute. Choose a folder of photos, set a duration for the experience, select how many images to see on the screen at once, and whether to display your life in reverse-chronological or chronological order.
+This incredible desktop photos app enables visualizing 10,000s of photos in one minute. 
 
 
 https://github.com/user-attachments/assets/8473ca1b-f108-4b54-8c2e-b05300205e2f
