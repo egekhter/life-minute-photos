@@ -22,7 +22,7 @@ https://nodejs.org/en/download/prebuilt-installer
 
 `git clone https://github.com/egekhter/life-minute-photos.git`
 
-`cd life-minute`
+`cd life-minute-photos`
 
 `npm install`
 
