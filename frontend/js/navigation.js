@@ -109,6 +109,13 @@ function handleKeyDown (e) {
                 e.preventDefault();
             }
         }
+    } else {
+        //pause/unpause rotate
+        if(e.which === 32) {
+            if(!(e.target.closest('input[type="text"]'))) {
+                photosApp.rotate.rotateLogic();
+            }
+        }
     }
 
     if(e.code === 'Tab' || e.which === 9) {

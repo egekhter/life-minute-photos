@@ -93,9 +93,6 @@ photosApp.time = {
     getTimeName: function() {
         return 'life';
     },
-    getSectionName: function() {
-        return 'life';
-    },
     loadIntervalLoops: async function () {
         let r = await axios.get(`${photosApp.backend.host}interval/loops`);
 
