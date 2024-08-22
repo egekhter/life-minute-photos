@@ -8,7 +8,7 @@ const writeFileAtomic = require("write-file-atomic");
 
 const packageSettings = require("../../package.json");
 
-global.image_ext = ['jpg', 'png', 'gif', 'tif', 'tiff', 'jpeg', 'bmp', 'heic'];
+global.image_ext = ['jpg', 'png', 'gif', 'tif', 'tiff', 'jpeg', 'bmp', 'heic', 'webp'];
 global.writeKeys = {};
 
 
