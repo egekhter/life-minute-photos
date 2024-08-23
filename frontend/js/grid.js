@@ -46,8 +46,6 @@ photosApp.grid = {
     setParallel: async function (parallel) {
         photosApp.grid.parallel = parallel;
 
-        console.log("Set parallel");
-
         try {
             await photosApp.settings.saveSettings('feature.parallel', parallel);
             await photosApp.grid.setGrid();

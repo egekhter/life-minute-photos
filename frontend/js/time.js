@@ -77,21 +77,8 @@ photosApp.time = {
             photosApp.app.saveInterval();
         }, photosApp.time.saveInterval * 1000);
     },
-    getLife: function() {
-        return new Promise(async (resolve, reject) => {
-            try {
-                let r = await axios.get(`${photosApp.backend.host}items/life`);
-                resolve(r.data);
-            } catch(e) {
-
-            }
-        });
-    },
     getYearOfDate(date) {
         return date.substr(0, 4);
-    },
-    getTimeName: function() {
-        return 'life';
     },
     loadIntervalLoops: async function () {
         let r = await axios.get(`${photosApp.backend.host}interval/loops`);
@@ -107,26 +94,6 @@ photosApp.time = {
             });
 
             return resolve(r.data.count);
-        });
-    },
-    getItems: function(gridIndex, direction, item_ids_only) {
-        return new Promise(async (resolve, reject) => {
-            let filtered_items = [];
-
-            try {
-                let r = await axios.get(`${photosApp.backend.host}time/items`, {
-                    params: {
-                        gridIndex: gridIndex,
-                        direction: direction,
-                        item_ids_only: item_ids_only
-                    }
-                });
-                filtered_items = r.data;
-            } catch(e) {
-                return reject(e);
-            }
-
-            return resolve(filtered_items);
         });
     },
     updateOrganizeGridItemsCount: function () {
