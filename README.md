@@ -1,16 +1,11 @@
-# Life Minute Photos
+<img src="https://github.com/user-attachments/assets/26e04c0c-ee71-43b7-be5b-1c25030edfa2" height="70">
 
-This incredible desktop photos app enables visualizing 10,000s of photos in one minute. 
+### Life Minute Photos
 
+An open-source life-changing experience, visualize your entire Photos library in one minute.
 
-https://github.com/user-attachments/assets/8473ca1b-f108-4b54-8c2e-b05300205e2f
+https://github.com/user-attachments/assets/c78d5c72-a5e9-4acb-96e3-705133c10d6d
 
-
-# Track
-
-A beautiful track by the amazing Boris Brejcha that makes even more sense after you experience a life of photos in a minute. 
-
-https://lifeminute.dev/boris-brejcha-life-track
 
 # Node.js
 
