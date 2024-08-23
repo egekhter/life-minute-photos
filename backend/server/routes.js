@@ -566,4 +566,15 @@ module.exports = async function(app){
             res.send(e);
         }
     });
+
+    app.put('/intervals/reset', async function (req, res) {
+        try {
+            let intervals = await timeL.resetIntervalLoop();
+            res.status(200);
+            res.send(intervals);
+        } catch (e) {
+            res.status(400);
+            res.send(e);
+        }
+    });
 };

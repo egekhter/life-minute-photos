@@ -19,7 +19,7 @@ module.exports = {
 
         return month;
     },
-    async initIntervalLoops(on_chronology) {
+    initIntervalLoops(on_chronology) {
         return new Promise(async (resolve, reject) => {
             //initialize interval loop to array with length of parallel grid count
             if(timeL.intervalLoop.length !== settingsL.data.feature.parallel) {
@@ -133,5 +133,19 @@ module.exports = {
     },
     resetData: function () {
         module.exports.intervalLoop = [];
+    },
+    resetIntervalLoop: function () {
+        return new Promise(async (resolve, reject) => {
+            timeL.resetData();
+
+            try {
+                await timeL.initIntervalLoops();
+                await dbL.saveIntervalLoops(timeL.intervalLoop);
+            } catch(e) {
+
+            }
+
+            resolve();
+        });
     }
 }

@@ -98,6 +98,7 @@ h1 {
         .life__column {
             position: absolute;
             cursor: pointer;
+            transform: translate3d(0, 0, 0);
 
             &.display_first {
                 .date__image:not(.show) {
@@ -119,6 +120,7 @@ h1 {
             overflow: hidden;
             z-index: -2;
             -webkit-transition-property: opacity;
+            transform: translate3d(0, 0, 0);
 
             &.show {
                 z-index: -1;

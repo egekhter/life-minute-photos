@@ -204,5 +204,20 @@ photosApp.time = {
 
             document.getElementById('chronology-from-to').innerHTML = from_to;
         }
+    },
+    resetIntervalLoop: function () {
+        return new Promise(async (resolve, reject) => {
+             try {
+                 let r = await axios.put(`${photosApp.backend.host}intervals/reset`);
+
+                 photosApp.time.intervalLoop = r.data;
+
+                 await photosApp.app.updateHtml(true, true);
+             } catch(e) {
+
+             }
+
+             resolve();
+        });
     }
 };
